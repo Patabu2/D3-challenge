@@ -51,9 +51,9 @@ function xScale(chartData, chosenXAxis){
     var min = d3.min(chartData, d=> d[chosenXAxis]);
     var max = d3.max(chartData, d => d[chosenXAxis]);
     
-    // Multiply the domain by 0.03 so the dots won't be over the axes
+    // Multiply the domain dots by some percentage of itself so the dots won't be over the axes
     var x = d3.scaleLinear()
-        .domain([min - min*0.05, max ])
+        .domain([min - min*0.05, max + max * 0.05])
         .range([0,width]);
     
     return x
@@ -71,9 +71,9 @@ function yScale(chartData, chosenYAxis){
     var min = d3.min(chartData, d => d[chosenYAxis]);
     var max =  d3.max(chartData, d=> d[chosenYAxis]);
     
-    // Multiply the domain by 0.5 so the dots won't be over the axes
+    // Multiply the domain numbers by some percentage of itself so the dots won't be over the axes
     var y = d3.scaleLinear()
-        .domain([min - min * 0.5, max])
+        .domain([min - min * 0.3, max + max *0.1])
         .range([height, 0]);
     return y
 };
